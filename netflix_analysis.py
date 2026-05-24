@@ -34,7 +34,7 @@ plt.pie(
 )
 
 plt.title("Netflix Content Distribution")
-plt.savefig("screenshots/content_distribution.png")
+plt.savefig("visualization_generated/content_distribution.png")
 plt.show()
 
 # Top 10 Ratings
@@ -47,7 +47,7 @@ plt.title("Top 10 Netflix Ratings")
 plt.xlabel("Rating")
 plt.ylabel("Count")
 
-plt.savefig("screenshots/ratings_chart.png")
+plt.savefig("visualization_generated/ratings_chart.png")
 plt.show()
 
 # Top 10 Countries
@@ -70,7 +70,7 @@ plt.ylabel("Number of Titles")
 
 plt.xticks(rotation=45)
 
-plt.savefig("country_chart.png")
+plt.savefig("visualization_generated/country_chart.png")
 
 plt.show()
 
@@ -87,7 +87,7 @@ plt.title("Movie Duration Distribution")
 plt.xlabel("Duration (Minutes)")
 plt.ylabel("Number of Movies")
 
-plt.savefig("movie_duration_chart.png")
+plt.savefig("visualization_generated/movie_duration_chart.png")
 plt.show()
 
 #Movies Added Per Year
@@ -105,7 +105,7 @@ plt.title("Content Added to Netflix Per Year")
 plt.xlabel("Year")
 plt.ylabel("Number of Titles")
 
-plt.savefig("yearly_additions_chart.png")
+plt.savefig("visualization_generated/yearly_additions_chart.png")
 plt.show()
 
 #Release Year Analysis
@@ -117,5 +117,5 @@ plt.title("Netflix Content Release Year Distribution")
 plt.xlabel("Release Year")
 plt.ylabel("Number of Shows")
 
-plt.savefig("release_year_chart.png")
+plt.savefig("visualization_generated/release_year_chart.png")
 plt.show()
