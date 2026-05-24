@@ -51,16 +51,41 @@ plt.savefig("screenshots/ratings_chart.png")
 plt.show()
 
 # Top 10 Countries
-countries = df['country'].value_counts().head(10)
+# Remove rows where country is missing
+country_df = df.dropna(subset=['country'])
+
+# Remove rows where country is 'Unknown'
+country_df = country_df[country_df['country'] != 'Unknown']
+
+# Top 10 countries
+countries = country_df['country'].value_counts().head(10)
 
 plt.figure(figsize=(10,5))
+
 countries.plot(kind='bar')
 
 plt.title("Top 10 Countries Producing Netflix Content")
 plt.xlabel("Country")
 plt.ylabel("Number of Titles")
 
-plt.savefig("screenshots/country_chart.png")
+plt.xticks(rotation=45)
+
+plt.savefig("country_chart.png")
+
 plt.show()
 
-print("\nAnalysis Completed Successfully!")
+# movie duration distribution
+movie_df = df[df['type'] == 'Movie'].copy()
+
+movie_df['duration_int'] = movie_df['duration'].str.replace(' min', '').astype(float)
+
+plt.figure(figsize=(10,5))
+
+movie_df['duration_int'].hist(bins=30)
+
+plt.title("Movie Duration Distribution")
+plt.xlabel("Duration (Minutes)")
+plt.ylabel("Number of Movies")
+
+plt.savefig("movie_duration_chart.png")
+plt.show()
