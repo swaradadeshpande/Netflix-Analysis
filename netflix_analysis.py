@@ -89,3 +89,21 @@ plt.ylabel("Number of Movies")
 
 plt.savefig("movie_duration_chart.png")
 plt.show()
+
+#Movies Added Per Year
+df['date_added'] = pd.to_datetime(df['date_added'], errors='coerce')
+
+df['year_added'] = df['date_added'].dt.year
+
+yearly_additions = df['year_added'].value_counts().sort_index()
+
+plt.figure(figsize=(12,5))
+
+yearly_additions.plot(kind='line', marker='o')
+
+plt.title("Content Added to Netflix Per Year")
+plt.xlabel("Year")
+plt.ylabel("Number of Titles")
+
+plt.savefig("yearly_additions_chart.png")
+plt.show()
