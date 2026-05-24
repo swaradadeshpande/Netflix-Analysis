@@ -107,3 +107,15 @@ plt.ylabel("Number of Titles")
 
 plt.savefig("yearly_additions_chart.png")
 plt.show()
+
+#Release Year Analysis
+plt.figure(figsize=(10,5))
+
+df['release_year'].hist(bins=10)
+
+plt.title("Netflix Content Release Year Distribution")
+plt.xlabel("Release Year")
+plt.ylabel("Number of Shows")
+
+plt.savefig("release_year_chart.png")
+plt.show()
