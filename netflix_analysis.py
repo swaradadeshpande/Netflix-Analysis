@@ -180,6 +180,6 @@ plt.title("Correlation Heatmap")
 
 plt.tight_layout()
 
-plt.savefig("screenshots/correlation_heatmap.png")
+plt.savefig("visualization_generated/correlation_heatmap.png")
 
 plt.show()
