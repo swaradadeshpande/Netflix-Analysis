@@ -119,3 +119,33 @@ plt.ylabel("Number of Shows")
 
 plt.savefig("visualization_generated/release_year_chart.png")
 plt.show()
+
+# Remove missing listed_in values
+genre_df = df.dropna(subset=['listed_in']).copy()
+
+# Split genres
+genre_df['listed_in'] = genre_df['listed_in'].str.split(',')
+
+# Explode genres into separate rows
+genre_exploded = genre_df.explode('listed_in')
+
+# Remove extra spaces
+genre_exploded['listed_in'] = genre_exploded['listed_in'].str.strip()
+
+# Top 10 genres
+top_genres = genre_exploded['listed_in'].value_counts().head(10)
+
+# Plot
+plt.figure(figsize=(12,6))
+
+top_genres.sort_values().plot(kind='barh')
+
+plt.title("Top 10 Netflix Genres")
+plt.xlabel("Number of Titles")
+plt.ylabel("Genre")
+
+plt.tight_layout()
+
+plt.savefig("visualization_generated/top_genres_chart.png")
+
+plt.show()
