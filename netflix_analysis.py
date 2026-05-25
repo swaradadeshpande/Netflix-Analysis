@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 # Load dataset
 df = pd.read_csv("data/netflix_titles.csv")
@@ -150,28 +151,35 @@ plt.savefig("visualization_generated/top_genres_chart.png")
 
 plt.show()
 
-# Convert date column
-df['date_added'] = pd.to_datetime(df['date_added'], errors='coerce')
+# Create numeric features
+movie_df = df[df['type'] == 'Movie'].copy()
 
-# Extract year
-df['year_added'] = df['date_added'].dt.year
+movie_df = movie_df.dropna(subset=['release_year'])
 
-# Count additions per year
-yearly_content = df['year_added'].value_counts().sort_index()
+# Extract duration
+movie_df['duration_int'] = movie_df['duration'].str.replace(
+    ' min',
+    '',
+    regex=False
+)
 
-# Plot
-plt.figure(figsize=(12,6))
+movie_df['duration_int'] = pd.to_numeric(
+    movie_df['duration_int'],
+    errors='coerce'
+)
 
-yearly_content.plot(kind='line', marker='o')
+# Correlation matrix
+corr = movie_df[['release_year', 'duration_int']].corr()
 
-plt.title("Netflix Content Added Per Year")
-plt.xlabel("Year")
-plt.ylabel("Number of Titles")
+# Plot heatmap
+plt.figure(figsize=(6,4))
 
-plt.grid(True)
+sns.heatmap(corr, annot=True)
+
+plt.title("Correlation Heatmap")
 
 plt.tight_layout()
 
-plt.savefig("visualizaton_generated/yearly_content_chart.png")
+plt.savefig("screenshots/correlation_heatmap.png")
 
 plt.show()
