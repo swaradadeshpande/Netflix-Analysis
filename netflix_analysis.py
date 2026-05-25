@@ -149,3 +149,29 @@ plt.tight_layout()
 plt.savefig("visualization_generated/top_genres_chart.png")
 
 plt.show()
+
+# Convert date column
+df['date_added'] = pd.to_datetime(df['date_added'], errors='coerce')
+
+# Extract year
+df['year_added'] = df['date_added'].dt.year
+
+# Count additions per year
+yearly_content = df['year_added'].value_counts().sort_index()
+
+# Plot
+plt.figure(figsize=(12,6))
+
+yearly_content.plot(kind='line', marker='o')
+
+plt.title("Netflix Content Added Per Year")
+plt.xlabel("Year")
+plt.ylabel("Number of Titles")
+
+plt.grid(True)
+
+plt.tight_layout()
+
+plt.savefig("visualizaton_generated/yearly_content_chart.png")
+
+plt.show()
