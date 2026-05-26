@@ -63,14 +63,29 @@ plt.show()
 # Top 10 Ratings
 ratings = df['rating'].value_counts().head(10)
 
-plt.figure(figsize=(8,5))
-ratings.plot(kind='bar')
+plt.figure(figsize=(10,6))
 
-plt.title("Top 10 Netflix Ratings")
+sns.barplot(
+    x=ratings.index,
+    y=ratings.values,
+    palette='rocket'
+)
+
+plt.title(
+    "Top 10 Netflix Ratings",
+    fontsize=16,
+    fontweight='bold'
+)
+
 plt.xlabel("Rating")
 plt.ylabel("Count")
 
+plt.xticks(rotation=45)
+
+plt.tight_layout()
+
 plt.savefig("visualization_generated/ratings_chart.png")
+
 plt.show()
 
 # Top 10 Countries
