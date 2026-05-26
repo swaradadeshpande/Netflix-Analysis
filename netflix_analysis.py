@@ -2,6 +2,15 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+# Global style
+sns.set_style("darkgrid")
+
+# Better figure quality
+plt.rcParams['figure.figsize'] = (10,6)
+
+# Bigger fonts
+plt.rcParams['font.size'] = 12
+
 # Load dataset
 df = pd.read_csv("data/netflix_titles.csv")
 
@@ -27,15 +36,28 @@ print("\nMovies vs TV Shows:")
 print(type_counts)
 
 # Plot Pie Chart
-plt.figure(figsize=(6,6))
+colors = ['#E50914', '#221F1F']
+
+plt.figure(figsize=(7,7))
+
 plt.pie(
     type_counts,
     labels=type_counts.index,
-    autopct='%1.1f%%'
+    autopct='%1.1f%%',
+    colors=colors,
+    startangle=90,
+    shadow=True,
+    explode=[0.05, 0]
 )
 
-plt.title("Netflix Content Distribution")
+plt.title(
+    "Netflix Content Distribution",
+    fontsize=16,
+    fontweight='bold'
+)
+
 plt.savefig("visualization_generated/content_distribution.png")
+
 plt.show()
 
 # Top 10 Ratings
