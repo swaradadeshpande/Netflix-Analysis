@@ -209,11 +209,21 @@ movie_df['duration_int'] = pd.to_numeric(
 corr = movie_df[['release_year', 'duration_int']].corr()
 
 # Plot heatmap
-plt.figure(figsize=(6,4))
+plt.figure(figsize=(7,5))
 
-sns.heatmap(corr, annot=True)
+sns.heatmap(
+    corr,
+    annot=True,
+    cmap='coolwarm',
+    linewidths=1,
+    linecolor='white'
+)
 
-plt.title("Correlation Heatmap")
+plt.title(
+    "Correlation Heatmap",
+    fontsize=16,
+    fontweight='bold'
+)
 
 plt.tight_layout()
 
