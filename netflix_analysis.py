@@ -98,20 +98,28 @@ country_df = country_df[country_df['country'] != 'Unknown']
 # Top 10 countries
 countries = country_df['country'].value_counts().head(10)
 
-plt.figure(figsize=(10,5))
+plt.figure(figsize=(12,6))
 
-countries.plot(kind='bar')
+sns.barplot(
+    x=countries.values,
+    y=countries.index,
+    palette='mako'
+)
 
-plt.title("Top 10 Countries Producing Netflix Content")
-plt.xlabel("Country")
-plt.ylabel("Number of Titles")
+plt.title(
+    "Top 10 Countries Producing Netflix Content",
+    fontsize=16,
+    fontweight='bold'
+)
 
-plt.xticks(rotation=45)
+plt.xlabel("Number of Titles")
+plt.ylabel("Country")
+
+plt.tight_layout()
 
 plt.savefig("visualization_generated/country_chart.png")
 
 plt.show()
-
 # movie duration distribution
 movie_df = df[df['type'] == 'Movie'].copy()
 
